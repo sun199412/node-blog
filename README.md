@@ -9,57 +9,88 @@
 | 登录 | /api/blog/login | post |  | postData中有用户名和密码 |
 
 # nodejs的学习
-  1. **简单的nodejs案例**
-    ```
-      const http = require('http')
+  1. **简单的nodejs案例**      
+```
+  const http = require('http')
 
-      const server = http.createServer((req, res) => {
-        res.end('hello, world!')
-      })
+  const server = http.createServer((req, res) => {
+    res.end('hello, world!')
+  })
 
-      server.listen(5000, () => {
-        console.log('server is start!!!')
-      })
-    ```
+  server.listen(5000, () => {
+    console.log('server is start!!!')
+  })
+```
 
-  2. **get方式的案例**
-    ```
-      const http = require('http');
-      const queryString = require("querystring");
+  2. **get方式的案例**          
+```
+  const http = require('http');
+  const queryString = require("querystring");
 
-      const server = http.createServer((req, res) => {
-          const url = req.url;
-          req.query = queryString.parse(url.split('?')[1]);
+  const server = http.createServer((req, res) => {
+      const url = req.url;
+      req.query = queryString.parse(url.split('?')[1]);
 
-          res.end(JSON.stringify(req.query));
-      })
+      res.end(JSON.stringify(req.query));
+  })
 
-      server.listen(8000, ()=>{
-          console.log("server is start")
-      });
-    ```
+  server.listen(8000, ()=>{
+      console.log("server is start")
+  });
+```
 
-  3. **post方式的案例**
-    ```
-      const http = require('http')
+  3. **post方式的案例**     
+```
+  const http = require('http')
 
-      const server = http.createServer((req, res) => {
-          if(req.method === 'POST') {
-              // req 数据格式
-              console.log('请求头数据:', req.headers['content-type']);
-              // 接收数据
-              let postData = '';
-              req.on('data', code => {
-                  postData += code.toString()
-              })
-              req.on('end', ()=> {
-                  console.log('postdata', postData)
-                  res.end('hello, world')
-              })
-          }
-      })
+  const server = http.createServer((req, res) => {
+      if(req.method === 'POST') {
+          // req 数据格式
+          console.log('请求头数据:', req.headers['content-type']);
+          // 接收数据
+          let postData = '';
+          req.on('data', code => {
+              postData += code.toString()
+          })
+          req.on('end', ()=> {
+              console.log('postdata', postData)
+              res.end('hello, world')
+          })
+      }
+  })
 
-      server.listen(5000, ()=>{
-          console.log('server is running')
-      })
-    ```
+  server.listen(5000, ()=>{
+      console.log('server is running')
+  })
+```
+
+  4. **promise的案例**    
+     * **普通的回调地狱模式**
+```
+  getFileContent('a.json', aData => {
+    console.log('aData', aData)
+    getFileContent(aData.next, bData => {
+        console.log('bData', bData)
+        getFileContent(bData.next, cData => {
+            console.log('cData', cData)
+        })
+    })
+  })
+```
+     * **promise模式** 
+```
+  getFileContent('a.json').then(aData => {
+      console.log('aData', aData)
+      return getFileContent(aData.next)
+  }).then(bData => {
+      console.log('bData', bData)
+      return getFileContent(bData.next)
+  }).then(cData => {
+      console.log('cData', cData)
+  })
+```
+
+                                 
+                                 
+                              
+
