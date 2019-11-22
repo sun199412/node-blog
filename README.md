@@ -10,87 +10,154 @@
 
 # nodejs的学习
   1. **简单的nodejs案例**      
-```
-  const http = require('http')
+    ```
+      const http = require('http')
 
-  const server = http.createServer((req, res) => {
-    res.end('hello, world!')
-  })
+      const server = http.createServer((req, res) => {
+        res.end('hello, world!')
+      })
 
-  server.listen(5000, () => {
-    console.log('server is start!!!')
-  })
-```
+      server.listen(5000, () => {
+        console.log('server is start!!!')
+      })
+    ```
 
   2. **get方式的案例**          
-```
-  const http = require('http');
-  const queryString = require("querystring");
+    ```
+      const http = require('http');
+      const queryString = require("querystring");
 
-  const server = http.createServer((req, res) => {
-      const url = req.url;
-      req.query = queryString.parse(url.split('?')[1]);
+      const server = http.createServer((req, res) => {
+          const url = req.url;
+          req.query = queryString.parse(url.split('?')[1]);
 
-      res.end(JSON.stringify(req.query));
-  })
+          res.end(JSON.stringify(req.query));
+      })
 
-  server.listen(8000, ()=>{
-      console.log("server is start")
-  });
-```
+      server.listen(8000, ()=>{
+          console.log("server is start")
+      });
+    ```
 
   3. **post方式的案例**     
-```
-  const http = require('http')
+    ```
+      const http = require('http')
 
-  const server = http.createServer((req, res) => {
-      if(req.method === 'POST') {
-          // req 数据格式
-          console.log('请求头数据:', req.headers['content-type']);
-          // 接收数据
-          let postData = '';
-          req.on('data', code => {
-              postData += code.toString()
-          })
-          req.on('end', ()=> {
-              console.log('postdata', postData)
-              res.end('hello, world')
-          })
-      }
-  })
+      const server = http.createServer((req, res) => {
+          if(req.method === 'POST') {
+              // req 数据格式
+              console.log('请求头数据:', req.headers['content-type']);
+              // 接收数据
+              let postData = '';
+              req.on('data', code => {
+                  postData += code.toString()
+              })
+              req.on('end', ()=> {
+                  console.log('postdata', postData)
+                  res.end('hello, world')
+              })
+          }
+      })
 
-  server.listen(5000, ()=>{
-      console.log('server is running')
-  })
-```
+      server.listen(5000, ()=>{
+          console.log('server is running')
+      })
+    ```
 
   4. **promise的案例**    
      * **普通的回调地狱模式**
-```
-  getFileContent('a.json', aData => {
-    console.log('aData', aData)
-    getFileContent(aData.next, bData => {
-        console.log('bData', bData)
-        getFileContent(bData.next, cData => {
+      ```
+        getFileContent('a.json', aData => {
+          console.log('aData', aData)
+          getFileContent(aData.next, bData => {
+              console.log('bData', bData)
+              getFileContent(bData.next, cData => {
+                  console.log('cData', cData)
+              })
+          })
+        })
+      ```
+     * **[详细代码请看：http-test/promise/index.js](http-test/promise/index.js)**
+
+     * **promise模式** 
+      ```
+        getFileContent('a.json').then(aData => {
+            console.log('aData', aData)
+            return getFileContent(aData.next)
+        }).then(bData => {
+            console.log('bData', bData)
+            return getFileContent(bData.next)
+        }).then(cData => {
             console.log('cData', cData)
         })
-    })
-  })
-```
-     * **promise模式** 
-```
-  getFileContent('a.json').then(aData => {
-      console.log('aData', aData)
-      return getFileContent(aData.next)
-  }).then(bData => {
-      console.log('bData', bData)
-      return getFileContent(bData.next)
-  }).then(cData => {
-      console.log('cData', cData)
-  })
-```
+      ```
+     * **[详细代码请看：http-test/promise/promise.js](http-test/promise/promise.js)**
 
+  5. **mysql的使用**   
+    1. **下载安装mysql**       
+    2. **安装可视化工具SQLyog**   
+
+  6. **操作数据库**    
+     * **创建myblog数据库**
+      ```
+        create Table myblog character set utf8; 
+        use myblog;
+      ```
+
+     * **创建user表**
+  
+        * **展示内容**
+          | id | username | password | realname |
+          | :----: | :----: | :----: | :----: |
+          | 1 | zhangsan | 123 | 张三 |
+          | 2 | lisi | 123 | 李四 |
+
+        * **创建的格式**
+          | 列名 | 数据类型 | 长度 | 主键? | 非空? | 自增? | 默认 |
+          | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+          | id | int | 11 | Y | Y | Y |  |
+          | username | varchar | 20 |  | Y |  |  | 
+          | password | varchar | 20 |  | Y |  |  |
+          | realname | varchar | 10 |  | Y |  |  |
+
+
+
+     * **创建blog表**
+
+        * **展示内容**
+          | id | title | content | createtime | author |
+          | :----: | :----: | :----: | :----: | :----: |
+          | 1 | 标题1 | 内容1 | 1542512972176 | zhangsan |
+          | 2 | 标题1 | 内容1 | 1542512982176 | lisi |
+
+        * **创建格式**
+          | 列名 | 数据类型 | 长度 | 主键? | 非空? | 自增? | 默认 |
+          | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+          | id | int | 11 | Y | Y | Y |  |
+          | title | varchar | 50 |  | Y |  |  | 
+          | content | longtext |  |  | Y |  |  |
+          | createtime | bigint | 10 |  | Y |  |  |
+          | author | varchar | 20 |  | Y |  |  |
                                  
-                                 
+     * mysql的增删改查   
+        * 新增
+          ```
+          insert into users(username, `password`, realname) values ("zhangsan", "123", "张三"); 
+          ```
+        * 删除                  
+          ```
+          delete from users where username = "lisi";
+          ```
+        * 修改
+          ```
+            update users set realname = "李四2" where username = 'lisi';
+          ```
+        * 查询
+          ```
+            select * from users;
+            select id, username from users order by id;
+          ```
+
+  7. **nodejs操作mysql**
                               
 

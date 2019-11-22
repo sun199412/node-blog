@@ -18,6 +18,7 @@ const getList = (author, keyword) => {
         }
     ]
 }
+
 // 根据id查询博客详情
 const getDetail = (id) => {
     // 先返回假数据
@@ -29,7 +30,34 @@ const getDetail = (id) => {
         author: '张三'
     }
 }
+
+// 新建博客的返回
+const newBlog = (blogData = {}) => {
+    // blogData 是一个对象，包含title, content属性
+    console.log('newBlog blogData...', blogData)
+    return {
+        id: 3 // 表示新建博客，插入到数据表里面的id
+    }
+}
+
+// 更新博客返回
+const updateBlog = (id, blogData = {}) => {
+    // id: 就是要更新博客的id
+    // blogData: 一个博客对象，包含title, content属性
+    console.log('update log', id, blogData)
+    return true
+}
+
+// 删除博客返回
+const delBlog = id => {
+    // id: 要删除博客的id
+    return true   
+}
+
 module.exports = {
     getList,
-    getDetail
+    getDetail,
+    newBlog,
+    updateBlog,
+    delBlog
 }
