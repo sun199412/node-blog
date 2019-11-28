@@ -158,6 +158,21 @@
             select id, username from users order by id;
           ```
 
-  7. **nodejs操作mysql**
-                              
+  7. **nodejs操作mysql**  
+     * 步骤：
+        1. 引入mysql
+        2. 创建连接对象
+        3. 连接
+        4. 执行sql
+        5. 关闭连接
+
+     * **[详细代码请看：http-test/mysql.js](http-test/mysql.js)**
+
+  8. **封装mysql工具**
+     * 步骤：
+        1. 在src文件夹下，创建db.js，配置变量
+          * **[详细代码请看：src/conf/db.js](src/conf/db.js)**
+
+        2. 在src文件夹下，创建mysql.js，写入公共函数exec
+          * **[详细代码请看：src/db/mysql.js](src/db/mysql.js)**                   
 
