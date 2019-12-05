@@ -174,5 +174,41 @@
           * **[详细代码请看：src/conf/db.js](src/conf/db.js)**
 
         2. 在src文件夹下，创建mysql.js，写入公共函数exec
-          * **[详细代码请看：src/db/mysql.js](src/db/mysql.js)**                   
+          * **[详细代码请看：src/db/mysql.js](src/db/mysql.js)**      
+
+  9. **服务器端修改cookie**
+      ```
+        res.setHeader('Set-Cookie', `userId=${userId}; path=/; httpOnly; expires=${getCookieExpries()}`)
+      ```
+
+  10. **redis的使用**
+    1. **下载安装redis**
+      * [下载地址： https://www.runoob.com/redis/redis-install.html](https://www.runoob.com/redis/redis-install.html)
+
+      * **启动命令： redis-server.exe redis.windows.conf**
+
+    2. **redis的使用步骤**
+      ```
+        const redis = require('redis')
+        // 创建客户端
+        const redisClient = redis.createClient(6379, '127.0.0.1')
+        redisClient.on('error', err => {
+            console.error(err)
+        })
+
+        // 测试
+        redisClient.set('myname', 'zhangsan', redis.print)
+        redisClient.get('myname', (err, data) => {
+            if(err) {
+                console.error(err)
+                return
+            }
+            console.log('val', data)
+
+            redisClient.quit()
+        })
+      ```
+
+  11. **nginx的使用**
+    1. **nginx的下载安装**
 
