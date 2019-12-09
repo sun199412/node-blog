@@ -209,6 +209,52 @@
         })
       ```
 
-  11. **nginx的使用**
-    1. **nginx的下载安装**
+  11. **nginx的使用**    
+    1. **nginx的下载安装**    
+    2. **nginx在windows的启动**    
+      * start nginx: 启动
+      * nginx -s reload： 重启
+    3. 将打包后的代码放到nginx目录下的html文件夹里，修改配置在conf文件里
+
+  12. **stream的使用**      
+    3. **使用场景： 解决要读写的文件过大的情况，使用pipe管道模式，用流的方式读写**
+      * [详细代码请看：http-test/file/stream/readStream.js](http-test/file/stream/readStream.js)
+        ```
+          const fs = require('fs')
+          const path = require('path')
+
+          // 输入输出的路径
+          const fileName1 = path.resolve(__dirname, 'data.txt')
+          const fileName2 = path.resolve(__dirname, 'write.txt')
+
+          // 创建stream对象
+          const readStream = fs.createReadStream(fileName1)
+          const writeStream = fs.createWriteStream(fileName2)
+
+          // 管道连接
+          readStream.pipe(writeStream)
+
+          readStream.on('data', chunk => {
+            console.log(chunk.toString())
+          })
+          readStream.on('end', () => {
+            console.log('复制完成')
+          })
+
+          const http = require('http')
+          const fs = require('fs')
+          const path = require('path')
+          const fileName1 = path.resolve(__dirname, 'write.txt')
+
+          const server = http.createServer((req, res) => {
+            if(req.method === 'GET') {
+              const readStream = fs.createReadStream(fileName1)
+              readStream.pipe(res)
+            }
+          })
+
+          server.listen(5000, ()=> {
+            console.log('server is running')
+          })
+        ```
 
