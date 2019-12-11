@@ -1,4 +1,5 @@
-const { exec } = require('../db/mysql')
+const { exec, escape } = require('../db/mysql')
+const { genPassword } = require('../utils/cryp')
 
 const logins = (username, password) => {
     // 先使用假数据
@@ -7,8 +8,13 @@ const logins = (username, password) => {
     // }
     // return false
 
+    username = escape(username)
+
+    // 生成加密密码
+    password = genPassword(password)
+    password = escape(password)
     const sql = `
-        select * from users where username='${username}' and password='${password}'
+        select * from users where username=${username} and password=${password}
     `
     return exec(sql).then(rows => {
         return rows[0] || {}

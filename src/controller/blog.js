@@ -1,5 +1,6 @@
 
-const { exec } = require('../db/mysql')
+const { exec, escape } = require('../db/mysql')
+const xss = require('xss')
 // 博客列表
 const getList = (author, keyword) => {
     // 先返回假数据(格式是正确的)
@@ -57,8 +58,8 @@ const newBlog = (blogData = {}) => {
     //     id: 3 // 表示新建博客，插入到数据表里面的id
     // }
 
-    const title = blogData.title
-    const content = blogData.content
+    const title = xss(blogData.title)
+    const content = xss(blogData.content)
     const author = blogData.author
     const createtime = Date.now()
 
@@ -81,8 +82,8 @@ const updateBlog = (id, blogData = {}) => {
     // return true
 
 
-    const title = blogData.title
-    const content = blogData.content
+    const title = xss(blogData.title)
+    const content = xss(blogData.content)
     const sql = `
         update blogs set title='${title}',content='${content}' where id='${id}'
     `

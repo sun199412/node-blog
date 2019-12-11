@@ -8,6 +8,14 @@
 | 删除一篇博客 | /api/blog/del | post | id |  |
 | 登录 | /api/blog/login | post |  | postData中有用户名和密码 |
 
+# 主要功能：
+  1. 处理http接口
+  2. 连接数据库
+  3. 实现登录
+  4. 安全(sql注入，xss攻击，密码加密)
+  5. 日志
+  6. 上线
+
 # nodejs的学习
   1. **简单的nodejs案例**      
     ```
@@ -257,4 +265,55 @@
             console.log('server is running')
           })
         ```
+  13. **使用node的readline方法，提高stream的效率**    
+      * [详细代码请看：src/utils/readline.js](src/utils/readline.js)
 
+  14. **编写日志**
+      * 详细代码请看：
+        1. [src/utils/readline.js](src/utils/readline.js)
+        2. [src/utils/log.js](src/utils/log.js)
+        3. [logs/access.log](logs/access.log)
+        4. [logs/err.log](logs/err.log)
+        5. [logs/event.log](logs/event.log)
+
+  15. 安全部分：   
+      * sql注入：
+        * 攻击方式：输入一个sql片段，最终拼接成一段攻击代码
+        * 预防措施：使用mysql的escape函数处理输入内容即可
+
+        * 攻击代码片段：
+          ```
+            1. 前端输入 zhangsan' --
+            这种情况下，密码输入任意值都能登录
+            SELECT * FROM users WHERE username='zhangsan'-- 'and `password`='123'
+
+            2. 前端输入 zhangsan'; delete from users; --
+            这种情况下，就会删除user表
+            SELECT * FROM users WHERE username='zhangsan';DELETE FROM users; -- and `password`='123'
+          ```
+
+      * xss攻击：
+        * 攻击方式： 在页面展示内容中掺杂js代码，以获取网页信息
+        * 预防措施： 转换生成js的特殊字符
+
+        * 攻击代码片段：
+          ```
+            前端在表单中输入:
+            <script>document.cookie</script>
+          ```
+        
+        * 解决办法：
+          ```
+            安装xss  npm install --save xss
+            然后在表单中用xss包裹
+          ```
+
+      * 密码加密
+
+
+# express项目开发
+  1. 安装express
+    ```
+      npm install -g express-generator
+      express express-test
+    ```
