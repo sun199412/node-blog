@@ -310,10 +310,21 @@
 
       * 密码加密
 
+  16. PM2的使用
+    1. 下载安装
+      ```
+        npm install -g pm2
 
-# express项目开发
-  1. 安装express
-    ```
-      npm install -g express-generator
-      express express-test
-    ```
+        pm2 --version
+      ```
+
+    2. 常用命令
+      ```
+        pm2 start ...               // 启动
+        pm2 list                    // 查看具体信息
+        pm2 restart <AppName>/<id>  // 重启  
+        pm2 stop <AppName>/<id>     // 停止
+        pm2 delete <AppName>/<id>   // 删除
+        pm2 info <AppName>/<id>     // 查看
+        pm2 log <AppName>/<id>      // 日志
+      ```
