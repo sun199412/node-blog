@@ -1,9 +1,0 @@
-{
-    "apps": "pm2-test-server",
-    "script": "app.js",
-    "watch": true,
-    "ignore_watch": [
-        "node_modules",
-        "logs"
-    ]
-}

@@ -1,0 +1,38 @@
+2019-12-13 11:11:42: 假装出错 1576206702561
+2019-12-13 11:11:42: Error: /err 出错了
+2019-12-13 11:11:42:     at Server.http.createServer (F:\blog\blok\pm2-test\app.js:11:15)
+2019-12-13 11:11:42:     at Server.emit (events.js:182:13)
+2019-12-13 11:11:42:     at Server.<anonymous> (C:\Users\ami\AppData\Roaming\npm\node_modules\pm2\node_modules\_@pm2_io@4.3.3@@pm2\io\build\main\metrics\httpMetrics.js:166:33)
+2019-12-13 11:11:42:     at parserOnIncoming (_http_server.js:658:12)
+2019-12-13 11:11:42:     at HTTPParser.parserOnHeadersComplete (_http_common.js:109:17)
+2019-12-13 11:11:44: 假装出错 1576206704850
+2019-12-13 11:11:44: Error: /err 出错了
+2019-12-13 11:11:44:     at Server.http.createServer (F:\blog\blok\pm2-test\app.js:11:15)
+2019-12-13 11:11:44:     at Server.emit (events.js:182:13)
+2019-12-13 11:11:44:     at Server.<anonymous> (C:\Users\ami\AppData\Roaming\npm\node_modules\pm2\node_modules\_@pm2_io@4.3.3@@pm2\io\build\main\metrics\httpMetrics.js:166:33)
+2019-12-13 11:11:44:     at parserOnIncoming (_http_server.js:658:12)
+2019-12-13 11:11:44:     at HTTPParser.parserOnHeadersComplete (_http_common.js:109:17)
+2019-12-13 11:11:47: 假装出错 1576206707162
+2019-12-13 11:11:47: Error: /err 出错了
+2019-12-13 11:11:47:     at Server.http.createServer (F:\blog\blok\pm2-test\app.js:11:15)
+2019-12-13 11:11:47:     at Server.emit (events.js:182:13)
+2019-12-13 11:11:47:     at Server.<anonymous> (C:\Users\ami\AppData\Roaming\npm\node_modules\pm2\node_modules\_@pm2_io@4.3.3@@pm2\io\build\main\metrics\httpMetrics.js:166:33)
+2019-12-13 11:11:47:     at parserOnIncoming (_http_server.js:658:12)
+2019-12-13 11:11:47:     at HTTPParser.parserOnHeadersComplete (_http_common.js:109:17)
+2019-12-13 11:11:50: 假装出错 1576206710057
+2019-12-13 11:11:50: Error: /err 出错了
+2019-12-13 11:11:50:     at Server.http.createServer (F:\blog\blok\pm2-test\app.js:11:15)
+2019-12-13 11:11:50:     at Server.emit (events.js:182:13)
+2019-12-13 11:11:50:     at Server.<anonymous> (C:\Users\ami\AppData\Roaming\npm\node_modules\pm2\node_modules\_@pm2_io@4.3.3@@pm2\io\build\main\metrics\httpMetrics.js:166:33)
+2019-12-13 11:11:50:     at parserOnIncoming (_http_server.js:658:12)
+2019-12-13 11:11:50:     at HTTPParser.parserOnHeadersComplete (_http_common.js:109:17)
+2019-12-13 11:11:54: 假装出错 1576206714547
+2019-12-13 11:11:55: 假装出错 1576206715373
+2019-12-13 11:11:55: Error: /err 出错了
+2019-12-13 11:11:55:     at Server.http.createServer (F:\blog\blok\pm2-test\app.js:11:15)
+2019-12-13 11:11:55:     at Server.emit (events.js:182:13)
+2019-12-13 11:11:55:     at Server.<anonymous> (C:\Users\ami\AppData\Roaming\npm\node_modules\pm2\node_modules\_@pm2_io@4.3.3@@pm2\io\build\main\metrics\httpMetrics.js:166:33)
+2019-12-13 11:11:55:     at parserOnIncoming (_http_server.js:658:12)
+2019-12-13 11:11:55:     at HTTPParser.parserOnHeadersComplete (_http_common.js:109:17)
+2019-12-13 11:12:06: 假装出错 1576206726416
+2019-12-13 11:12:07: 假装出错 1576206727739
